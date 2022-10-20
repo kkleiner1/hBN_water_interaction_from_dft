@@ -2,6 +2,8 @@
 
 ryd_per_ev=0.0734986176
 base_dir=basis_extrapolation_calculations
+functional=pbe
+ecp=paw
 system=hBN_water_Oup_Hdown
 Nk=1
 Ns=1
@@ -12,7 +14,7 @@ fi
 
 for ecut_ev in 400 500 600 700 800
 	do
-		calc_dir=${base_dir}/${system}_ecut_${ecut_ev}_Nk_${Nk}_Ns_${Ns}
+		calc_dir=${base_dir}/${system}_${functional}_${ecp}_ecut_${ecut_ev}_Nk_${Nk}_Ns_${Ns}
 		if [ ! -d "${calc_dir}" ]; then
 			mkdir $calc_dir
 		fi
