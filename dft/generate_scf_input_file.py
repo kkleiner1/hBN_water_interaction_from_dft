@@ -65,7 +65,7 @@ def generate_scf_input_as_giant_string(
  restart_mode='from_scratch',
  prefix='{system}',
  outdir='.',
- pseudo_dir = '.',
+ pseudo_dir='.',
 /
 &system
  ibrav=0,
@@ -90,13 +90,13 @@ K_POINTS automatic
 {Nk} {Nk} 1 0 0 0"""
     return giant_string
 
-dir = str(sys.argv[1])
+calc_dir = str(sys.argv[1])
 system = str(sys.argv[2])
 ecut_ryd = float(sys.argv[3])
 Nk = int(sys.argv[4])
 Ns = int(sys.argv[5])
 
-with open(f"{dir}/scf.in", "w") as scf_input_script:
+with open(f"{calc_dir}/scf.in", "w") as scf_input_script:
     sys.stdout = scf_input_script
     giant_string = generate_scf_input_as_giant_string(system, ecut_ryd, Nk, Ns)
     print(giant_string)
