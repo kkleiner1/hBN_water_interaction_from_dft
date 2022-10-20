@@ -12,11 +12,11 @@ fi
 
 for ecut_ev in 400 500 600 700 800
 	do
-		ecut_dir=${base_dir}/ecut_${ecut_ev}_ev
-		if [ ! -d "${ecut_dir}" ]; then
-			mkdir $ecut_dir
+		calc_dir=${base_dir}/${system}_ecut_${ecut_ev}_Nk_${Nk}_Ns_${Ns}
+		if [ ! -d "${calc_dir}" ]; then
+			mkdir $calc_dir
 		fi
-		cp quantum_espresso_example/pw.x quantum_espresso_example/*.UPF $ecut_dir
+		cp quantum_espresso_example/pw.x quantum_espresso_example/*.UPF $calc_dir
 		ecut_ryd=$(bc<<<${ecut_ev}*${ryd_per_ev})
-		python generate_scf_input_file.py $ecut_dir $system $ecut_ryd $Nk $Ns
+		python generate_scf_input_file.py $calc_dir $system $ecut_ryd $Nk $Ns
 	done
