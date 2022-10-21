@@ -1,0 +1,5 @@
+hBN_water_Oup_Hdown 11 pbe paw 700 3 1 -203.48839386
+hBN_water_Oup_Hdown 44 pbe paw 700 3 2 -813.95677920
+hBN_water_Oup_Hdown 99 pbe paw 700 3 3 -1831.40317292
+hBN_water_Oup_Hdown 176 pbe paw 700 3 4 -3255.82715617
+hBN_water_Oup_Hdown 275 pbe paw 700 3 5 -5087.22995814

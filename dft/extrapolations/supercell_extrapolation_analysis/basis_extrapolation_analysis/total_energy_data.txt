@@ -1,0 +1,5 @@
+hBN_water_Oup_Hdown pbe paw 400 1 1 -203.00270828
+hBN_water_Oup_Hdown pbe paw 500 1 1 -203.23775578
+hBN_water_Oup_Hdown pbe paw 600 1 1 -203.26362394
+hBN_water_Oup_Hdown pbe paw 700 1 1 -203.26434334
+hBN_water_Oup_Hdown pbe paw 800 1 1 -203.26524325
