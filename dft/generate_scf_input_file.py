@@ -39,7 +39,7 @@ def extract_atomic_positions(file_lines_with_atomic_positions):
 def extract_geometry_info(system, Ns):
     if "water" in system:
         if "hBN" in system:
-            dir = f"../geometries/hBN_water_geometries/"
+            dir = f"../geometries/hBN_water_geometries/supercells_one_water/"
         else:
             dir = f"../geometries/water_geometries/"
     else:
