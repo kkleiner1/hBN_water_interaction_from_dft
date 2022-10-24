@@ -1,0 +1,27 @@
+#!/bin/bash
+
+ryd_per_ev=0.0734986176
+system=hBN_water_Oup_Hdown
+base_dir=supercell_extrapolation_calculations
+functional=pbe
+ecp=paw
+ecut_ev=700
+Nk=3
+
+if [ ! -d "${base_dir}" ]; then
+	mkdir $base_dir
+fi
+
+for Ns in 6 7 8 9 10
+	do
+		calc_dir=${system}_${functional}_${ecp}_ecut_${ecut_ev}_Nk_${Nk}_Ns_${Ns}
+		if [ ! -d "${base_dir}/${calc_dir}" ]; then
+			mkdir ${base_dir}/${calc_dir}
+		fi
+		cp ../quantum_espresso_example/pw.x ../quantum_espresso_example/*.UPF ${base_dir}/${calc_dir}
+		ecut_ryd=$(bc<<<${ecut_ev}*${ryd_per_ev})
+		python generate_scf_input_file.py $base_dir $calc_dir $system $ecut_ryd $Nk $Ns
+		python generate_quantum_espresso_submission.py $base_dir $calc_dir
+		submission_script=${calc_dir}.sh
+		sbatch $submission_script
+	done
