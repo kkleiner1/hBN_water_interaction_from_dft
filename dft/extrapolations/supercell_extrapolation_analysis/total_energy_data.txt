@@ -1,5 +1,9 @@
 hBN_water_Oup_Hdown 11 pbe paw 700 3 1 -203.48839386
-hBN_water_Oup_Hdown 44 pbe paw 700 3 2 -813.95677920
-hBN_water_Oup_Hdown 99 pbe paw 700 3 3 -1831.40317292
-hBN_water_Oup_Hdown 176 pbe paw 700 3 4 -3255.82715617
-hBN_water_Oup_Hdown 275 pbe paw 700 3 5 -5087.22995814
+hBN_water_Oup_Hdown 35 pbe paw 700 3 2 -681.86904954
+hBN_water_Oup_Hdown 75 pbe paw 700 3 3 -1479.15856687
+hBN_water_Oup_Hdown 131 pbe paw 700 3 4 -2595.36212609
+hBN_water_Oup_Hdown 203 pbe paw 700 3 5 -4030.48138850
+hBN_water_Oup_Hdown 291 pbe paw 700 3 6 -5784.51599767
+hBN_water_Oup_Hdown 395 pbe paw 700 3 7 -7857.46597772
+hBN_water_Oup_Hdown 515 pbe paw 700 3 8 -10249.33135397
+hBN_water_Oup_Hdown 651 pbe paw 700 3 9 -12960.11584807
