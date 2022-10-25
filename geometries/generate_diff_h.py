@@ -33,12 +33,13 @@ def generate_new_geometry_as_giant_string(default_geometry_fname, h):
 default_geometry_path = str(sys.argv[1])
 diff_h_folder = str(sys.argv[2])
 h = float(sys.argv[3])
+h_formatted = "{:0.4f}".format(h)
 
 default_geometry_dir = "/".join(default_geometry_path.split("/")[:-1])
 default_geometry_fname = default_geometry_path.split("/")[-1]
 default_geometry_fname_minus_xyz = default_geometry_fname.replace(".xyz", "")
 new_geometry_path = (
-    f"{default_geometry_dir}/{diff_h_folder}/{default_geometry_fname_minus_xyz}_h_{h}.xyz"
+    f"{default_geometry_dir}/{diff_h_folder}/{default_geometry_fname_minus_xyz}_h_{h_formatted}.xyz"
 )
 
 with open(new_geometry_path, "w") as new_geometry_file_object:
