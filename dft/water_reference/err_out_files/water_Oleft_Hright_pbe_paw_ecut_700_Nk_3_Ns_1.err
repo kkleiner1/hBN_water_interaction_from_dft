@@ -1,0 +1,12 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) modules/2.0-20220630
+
+The following sticky modules could not be reloaded:
+
+  1) slurm   2) intel-oneapi-mkl
+
+real	5m31.635s
+user	685m13.871s
+sys	9m32.737s

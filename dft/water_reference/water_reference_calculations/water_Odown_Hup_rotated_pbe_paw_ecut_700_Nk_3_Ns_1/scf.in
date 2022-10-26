@@ -1,0 +1,30 @@
+&control
+ calculation='scf',
+ restart_mode='from_scratch',
+ prefix='water_Odown_Hup_rotated',
+ outdir='.',
+ pseudo_dir='.',
+/
+&system
+ ibrav=0,
+ nat=3,
+ ntyp=2,
+ ecutwfc=51.44903232,
+ occupations='fixed',
+ nbnd=25,
+/
+&electrons
+/
+CELL_PARAMETERS angstrom
+30.0 0.0 0.0 
+0.0 30.0 0.0 
+0.0 0.0 30.0 
+ATOMIC_SPECIES
+O 15.999 O.pbe-n-kjpaw_psl.1.0.0.UPF
+H 1.00784 H.pbe-kjpaw_psl.1.0.0.UPF
+ATOMIC_POSITIONS angstrom
+O        0.03000000      28.94400000       9.20001000
+H        0.84999000      28.47399000       9.45000000
+H       29.31999000      28.48401000       9.68001000
+K_POINTS automatic
+3 3 1 0 0 0
