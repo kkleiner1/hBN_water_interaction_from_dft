@@ -54,7 +54,7 @@ def calc_min_num_bands(atomic_positions, H_val_el=1, O_val_el=6, spin_deg=2):
     return min_num_bands
 
 
-def generate_scf_input_as_giant_string(system, ecut_ryd, Nk, Ns):
+def generate_scf_input_as_giant_string(system, functional, vdw_corr, ecut_ryd, Nk, Ns):
     num_atoms, supercell_lattice_vectors, atomic_positions = extract_geometry_info(
         system, Ns
     )
@@ -73,6 +73,8 @@ def generate_scf_input_as_giant_string(system, ecut_ryd, Nk, Ns):
  ibrav=0,
  nat={num_atoms},
  ntyp={num_types},
+ input_dft={functional},
+ vdw_corr={vdw_corr},
  ecutwfc={ecut_ryd},
  occupations='fixed',
  nbnd={num_bands},
@@ -94,9 +96,12 @@ K_POINTS automatic
 base_dir = str(sys.argv[1])
 calc_dir = str(sys.argv[2])
 system = str(sys.argv[3])
-ecut_ryd = float(sys.argv[4])
-Nk = int(sys.argv[5])
-Ns = int(sys.argv[6])
+functional = str(sys.argv[4])
+vdw_corr = str(sys.argv[5])
+ecut_ryd = float(sys.argv[6])
+Nk = int(sys.argv[7])
+Ns = int(sys.argv[8])
+h = float(sys.argv[9])
 
 with open(f"{base_dir}/{calc_dir}/scf.in", "w") as scf_input_script:
     sys.stdout = scf_input_script
