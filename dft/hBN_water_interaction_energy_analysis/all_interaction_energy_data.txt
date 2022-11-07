@@ -4,6 +4,8 @@ hBN_water_Oup_Hdown_h_3.3889 dft-pbe -25.43081842327956 3.3889 hBN_water_Oup_Hdo
 hBN_water_Oup_Hdown_h_3.5926 dft-pbe -30.40859912300948 3.5926 hBN_water_Oup_Hdown
 hBN_water_Oup_Hdown_h_3.7963 dft-pbe -29.5832775082672 3.7963 hBN_water_Oup_Hdown
 hBN_water_Oup_Hdown_h_4.5000 dft-pbe -17.21556188131217 4.5 hBN_water_Oup_Hdown
+hBN_water_Oup_Hdown_h_5.0093 dft-pbe -10.173932835110463 5.0093 hBN_water_Oup_Hdown
+hBN_water_Oup_Hdown_h_6.0093 dft-pbe -3.9245636012637988 6.0093 hBN_water_Oup_Hdown
 hBN_water_Oup_Hdown_h_2.9907 rpa -29.313725490196067 2.9907 hBN_water_Oup_Hdown
 hBN_water_Oup_Hdown_h_3.1944 rpa -62.17501815541032 3.1944 hBN_water_Oup_Hdown
 hBN_water_Oup_Hdown_h_3.3889 rpa -69.94190268700072 3.3889 hBN_water_Oup_Hdown
