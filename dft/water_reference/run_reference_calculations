@@ -2,7 +2,8 @@
 
 ryd_per_ev=0.0734986176
 base_dir=water_reference_calculations
-functional=pbe
+system=water_Oup_Hdown
+functional=pbe0
 vdw_corr=none
 ecp=paw
 ecut_ev=700
@@ -13,16 +14,13 @@ if [ ! -d "${base_dir}" ]; then
 	mkdir $base_dir
 fi
 
-for system in water_Oup_Hdown water_Odown_Hup water_Odown_Hup_rotated water_Oflat_Hflat water_Oleft_Hright water_Oright_Hleft
-	do
-		calc_dir=${system}_${functional}_vdw_${vdw_corr}_${ecp}_ecut_${ecut_ev}_Nk_${Nk}_Ns_${Ns}
-		if [ ! -d "${base_dir}/${calc_dir}" ]; then
-			mkdir ${base_dir}/${calc_dir}
-		fi
-		cp ../quantum_espresso_example/pw.x ../quantum_espresso_example/*.UPF ${base_dir}/${calc_dir}
-		ecut_ryd=$(bc<<<${ecut_ev}*${ryd_per_ev})
-		python generate_scf_input_file.py $base_dir $calc_dir $system $functional $vdw_corr $ecut_ryd $Nk $Ns
-		python generate_quantum_espresso_submission.py $base_dir $calc_dir
-		submission_script=${calc_dir}.sh
-		sbatch $submission_script
-	done
+calc_dir=${system}_${functional}_vdw_${vdw_corr}_${ecp}_ecut_${ecut_ev}_Nk_${Nk}_Ns_${Ns}
+if [ ! -d "${base_dir}/${calc_dir}" ]; then
+	mkdir ${base_dir}/${calc_dir}
+fi
+cp ../quantum_espresso_example/pw.x ../pseudopotentials/*${ecp}*.UPF ${base_dir}/${calc_dir}
+ecut_ryd=$(bc<<<${ecut_ev}*${ryd_per_ev})
+python generate_scf_input_file.py $base_dir $calc_dir $system $functional $vdw_corr $ecut_ryd $Nk $Ns
+python generate_quantum_espresso_submission.py $base_dir $calc_dir
+submission_script=${calc_dir}.sh
+sbatch $submission_script
