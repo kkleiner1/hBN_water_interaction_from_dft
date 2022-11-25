@@ -3,7 +3,7 @@
 ryd_per_ev=0.0734986176
 system=hBN_water_Oup_Hdown
 base_dir=h_dependence_calculations
-functional=pbe
+functional=pbe0
 vdw_corr=none
 ecp=paw
 ecut_ev=700
@@ -20,7 +20,7 @@ for h in 2.9907 3.1944 3.3889 3.5926 3.7963 4.5000 5.0093 6.0093
 		if [ ! -d "${base_dir}/${calc_dir}" ]; then
 			mkdir ${base_dir}/${calc_dir}
 		fi
-		cp ../quantum_espresso_example/pw.x ../quantum_espresso_example/*.UPF ${base_dir}/${calc_dir}
+		cp ../quantum_espresso_example/pw.x ../pseudopotentials/*${ecp}*.UPF ${base_dir}/${calc_dir}
 		ecut_ryd=$(bc<<<${ecut_ev}*${ryd_per_ev})
 		python generate_scf_input_file.py $base_dir $calc_dir $system $functional $vdw_corr $ecut_ryd $Nk $Ns $h
 		python generate_quantum_espresso_submission.py $base_dir $calc_dir
