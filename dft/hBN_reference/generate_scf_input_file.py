@@ -46,14 +46,25 @@ def extract_geometry_info(system, Ns):
     return num_atoms, supercell_lattice_vectors, atomic_positions
 
 
-def calc_min_num_bands(
-    atomic_positions, B_val_el=3, N_val_el=5, spin_deg=2
-):
+def calc_min_num_bands(atomic_positions, B_val_el=3, N_val_el=5, spin_deg=2):
     num_B = atomic_positions.count("B")
     num_N = atomic_positions.count("N")
     num_val_el = num_B * B_val_el + num_N * N_val_el
     min_num_bands = int(num_val_el / spin_deg) + 1
     return min_num_bands
+
+
+def generate_atomic_species_info(functional, masses={"B": 10.811, "N": 14.0067}):
+    atomic_species_info = ""
+    for atom in masses:
+        if "pbe" in functional:
+            pseudopotential_file = f"{atom}.pbe-n-kjpaw_psl.1.0.0.UPF"
+        elif "lyp" in functional:
+            pseudopotential_file = f"{atom}.blyp-hgh.UPF"
+        atomic_species_info += f"{atom} {masses[atom]} {pseudopotential_file}"
+        if atom != list(masses.keys())[-1]:
+            atomic_species_info += "\n"
+    return atomic_species_info
 
 
 def generate_scf_input_as_giant_string(system, functional, vdw_corr, ecut_ryd, Nk, Ns):
@@ -64,6 +75,7 @@ def generate_scf_input_as_giant_string(system, functional, vdw_corr, ecut_ryd, N
         np.unique(np.array([pos[0] for pos in atomic_positions.splitlines()]))
     )
     num_bands = calc_min_num_bands(atomic_positions) + 20
+    atomic_species_info = generate_atomic_species_info(functional)
     giant_string = f"""&control
  calculation='scf',
  restart_mode='from_scratch',
@@ -75,8 +87,8 @@ def generate_scf_input_as_giant_string(system, functional, vdw_corr, ecut_ryd, N
  ibrav=0,
  nat={num_atoms},
  ntyp={num_types},
- input_dft={functional},
- vdw_corr={vdw_corr},
+ input_dft='{functional}',
+ vdw_corr='{vdw_corr}',
  ecutwfc={ecut_ryd},
  occupations='fixed',
  nbnd={num_bands},
@@ -86,8 +98,7 @@ def generate_scf_input_as_giant_string(system, functional, vdw_corr, ecut_ryd, N
 CELL_PARAMETERS angstrom
 {supercell_lattice_vectors}
 ATOMIC_SPECIES
-B 10.811 B.pbe-n-kjpaw_psl.1.0.0.UPF
-N 14.0067 N.pbe-n-kjpaw_psl.1.0.0.UPF
+{atomic_species_info}
 ATOMIC_POSITIONS angstrom
 {atomic_positions}
 K_POINTS automatic
@@ -103,9 +114,10 @@ vdw_corr = str(sys.argv[5])
 ecut_ryd = float(sys.argv[6])
 Nk = int(sys.argv[7])
 Ns = int(sys.argv[8])
-h = float(sys.argv[9])
 
 with open(f"{base_dir}/{calc_dir}/scf.in", "w") as scf_input_script:
     sys.stdout = scf_input_script
-    giant_string = generate_scf_input_as_giant_string(system, ecut_ryd, Nk, Ns)
+    giant_string = generate_scf_input_as_giant_string(
+        system, functional, vdw_corr, ecut_ryd, Nk, Ns
+    )
     print(giant_string)
