@@ -57,8 +57,10 @@ def calc_min_num_bands(atomic_positions, H_val_el=1, O_val_el=6, spin_deg=2):
 def generate_atomic_species_info(functional, masses={"O": 15.999, "H": 1.00784}):
     atomic_species_info = ""
     for atom in masses:
-        if "pbe" in functional:
-            pseudopotential_file = f"{atom}.pbe-n-kjpaw_psl.1.0.0.UPF"
+        if "lda" in functional:
+            pseudopotential_file = f"{atom}.pz-hgh.UPF"
+        elif "pbe" in functional:
+            pseudopotential_file = f"{atom}.pbe-hgh.UPF"
         elif "lyp" in functional:
             pseudopotential_file = f"{atom}.blyp-hgh.UPF"
         atomic_species_info += f"{atom} {masses[atom]} {pseudopotential_file}"

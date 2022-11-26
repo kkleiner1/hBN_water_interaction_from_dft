@@ -66,8 +66,10 @@ def generate_atomic_species_info(
 ):
     atomic_species_info = ""
     for atom in masses:
-        if "pbe" in functional:
-            pseudopotential_file = f"{atom}.pbe-n-kjpaw_psl.1.0.0.UPF"
+        if "lda" in functional:
+            pseudopotential_file = f"{atom}.pz-hgh.UPF"
+        elif "pbe" in functional:
+            pseudopotential_file = f"{atom}.pbe-hgh.UPF"
         elif "lyp" in functional:
             pseudopotential_file = f"{atom}.blyp-hgh.UPF"
         atomic_species_info += f"{atom} {masses[atom]} {pseudopotential_file}"
