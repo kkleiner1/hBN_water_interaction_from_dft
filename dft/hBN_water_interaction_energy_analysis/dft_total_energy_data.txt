@@ -8,3 +8,13 @@ hBN_water_Oup_Hdown_h_5.0093 pbe paw 700 3 8 -10249.33019450
 hBN_water_Oup_Hdown_h_6.0093 pbe paw 700 3 8 -10249.32973518
 hBN pbe paw 700 3 8 -10205.29221241
 water_Oup_Hdown pbe paw 700 3 1 -44.03723432
+hBN_water_Oup_Hdown_h_2.9907 pbe0 hgh 700 3 3 -950.26918534
+hBN_water_Oup_Hdown_h_3.1944 pbe0 hgh 700 3 3 -950.27309607
+hBN_water_Oup_Hdown_h_3.3889 pbe0 hgh 700 3 3 -950.27388550
+hBN_water_Oup_Hdown_h_3.5926 pbe0 hgh 700 3 3 -950.27439406
+hBN_water_Oup_Hdown_h_3.7963 pbe0 hgh 700 3 3 -950.27431163
+hBN_water_Oup_Hdown_h_4.5000 pbe0 hgh 700 3 3 -950.27351980
+hBN_water_Oup_Hdown_h_5.0093 pbe0 hgh 700 3 3 -950.27305598
+hBN_water_Oup_Hdown_h_6.0093 pbe0 hgh 700 3 3 -950.27274795
+hBN pbe0 hgh 700 3 3 -916.74399549
+water_Oup_Hdown pbe0 hgh 700 3 1 -33.52888877
