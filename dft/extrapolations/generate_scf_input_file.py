@@ -53,19 +53,25 @@ def extract_geometry_info(system, Ns):
 
 
 def generate_atomic_species_info(
-    functional, masses={"B": 10.811, "N": 14.0067, "O": 15.999, "H": 1.00784}
+    functional,
+    atomic_positions,
+    masses={"B": 10.811, "N": 14.0067, "O": 15.999, "H": 1.00784},
 ):
+    atoms_in_system = np.unique(
+        np.array([line[0] for line in atomic_positions.split("\n") if len(line) > 0])
+    )
     atomic_species_info = ""
     for atom in masses:
-        if "lda" in functional:
-            pseudopotential_file = f"{atom}.pz-hgh.UPF"
-        elif "pbe" in functional:
-            pseudopotential_file = f"{atom}.pbe-hgh.UPF"
-        elif "lyp" in functional:
-            pseudopotential_file = f"{atom}.blyp-hgh.UPF"
-        atomic_species_info += f"{atom} {masses[atom]} {pseudopotential_file}"
-        if atom != list(masses.keys())[-1]:
-            atomic_species_info += "\n"
+        if atom in atoms_in_system:
+            if "lda" in functional:
+                pseudopotential_file = f"{atom}.pz-hgh.UPF"
+            elif "pbe" in functional:
+                pseudopotential_file = f"{atom}.pbe-hgh.UPF"
+            elif "lyp" in functional:
+                pseudopotential_file = f"{atom}.blyp-hgh.UPF"
+            atomic_species_info += f"{atom} {masses[atom]} {pseudopotential_file}"
+            if atom != list(masses.keys())[-1]:
+                atomic_species_info += "\n"
     return atomic_species_info
 
 
@@ -79,7 +85,7 @@ def generate_scf_input_as_giant_string(
         np.unique(np.array([pos[0] for pos in atomic_positions.splitlines()]))
     )
     num_bands = int(max_val_elec_per_atom * num_atoms / spin_deg)
-    atomic_species_info = generate_atomic_species_info(functional)
+    atomic_species_info = generate_atomic_species_info(functional, atomic_positions)
     giant_string = f"""&control
  calculation='scf',
  restart_mode='from_scratch',
@@ -121,5 +127,7 @@ Ns = int(sys.argv[8])
 
 with open(f"{base_dir}/{calc_dir}/scf.in", "w") as scf_input_script:
     sys.stdout = scf_input_script
-    giant_string = generate_scf_input_as_giant_string(system, functional, vdw_corr, ecut_ryd, Nk, Ns)
+    giant_string = generate_scf_input_as_giant_string(
+        system, functional, vdw_corr, ecut_ryd, Nk, Ns
+    )
     print(giant_string)

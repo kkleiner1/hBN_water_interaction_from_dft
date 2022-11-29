@@ -54,18 +54,26 @@ def calc_min_num_bands(atomic_positions, B_val_el=3, N_val_el=5, spin_deg=2):
     return min_num_bands
 
 
-def generate_atomic_species_info(functional, masses={"B": 10.811, "N": 14.0067}):
+def generate_atomic_species_info(
+    functional,
+    atomic_positions,
+    masses={"B": 10.811, "N": 14.0067, "O": 15.999, "H": 1.00784},
+):
+    atoms_in_system = np.unique(
+        np.array([line[0] for line in atomic_positions.split("\n") if len(line) > 0])
+    )
     atomic_species_info = ""
     for atom in masses:
-        if "lda" in functional:
-            pseudopotential_file = f"{atom}.pz-hgh.UPF"
-        elif "pbe" in functional:
-            pseudopotential_file = f"{atom}.pbe-hgh.UPF"
-        elif "lyp" in functional:
-            pseudopotential_file = f"{atom}.blyp-hgh.UPF"
-        atomic_species_info += f"{atom} {masses[atom]} {pseudopotential_file}"
-        if atom != list(masses.keys())[-1]:
-            atomic_species_info += "\n"
+        if atom in atoms_in_system:
+            if "lda" in functional:
+                pseudopotential_file = f"{atom}.pz-hgh.UPF"
+            elif "pbe" in functional:
+                pseudopotential_file = f"{atom}.pbe-hgh.UPF"
+            elif "lyp" in functional:
+                pseudopotential_file = f"{atom}.blyp-hgh.UPF"
+            atomic_species_info += f"{atom} {masses[atom]} {pseudopotential_file}"
+            if atom != list(masses.keys())[-1]:
+                atomic_species_info += "\n"
     return atomic_species_info
 
 
@@ -77,7 +85,7 @@ def generate_scf_input_as_giant_string(system, functional, vdw_corr, ecut_ryd, N
         np.unique(np.array([pos[0] for pos in atomic_positions.splitlines()]))
     )
     num_bands = calc_min_num_bands(atomic_positions) + 20
-    atomic_species_info = generate_atomic_species_info(functional)
+    atomic_species_info = generate_atomic_species_info(functional, atomic_positions)
     giant_string = f"""&control
  calculation='scf',
  restart_mode='from_scratch',
