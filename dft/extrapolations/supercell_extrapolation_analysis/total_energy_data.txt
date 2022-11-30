@@ -16,6 +16,11 @@ hBN_water_Oup_Hdown 291 pbe hgh 700 3 6 -3700.90086813
 hBN_water_Oup_Hdown 395 pbe hgh 700 3 7 -5025.22990355
 hBN_water_Oup_Hdown 515 pbe hgh 700 3 8 -6553.29790960
 hBN_water_Oup_Hdown 651 pbe hgh 700 3 9 -8285.10221430
+hBN_water_Oup_Hdown 11 pbe hgh 1000 2 1 -136.61051825
+hBN_water_Oup_Hdown 35 pbe hgh 1000 2 2 -444.44473339
+hBN_water_Oup_Hdown 75 pbe hgh 1000 2 3 -957.47742695
+hBN_water_Oup_Hdown 131 pbe hgh 1000 2 4 -1675.72152118
+hBN_water_Oup_Hdown 203 pbe hgh 1000 2 5 -2599.17813158
 hBN 8 pbe hgh 700 3 1 -101.87122064
 hBN 32 pbe hgh 700 3 2 -407.48628409
 hBN 72 pbe hgh 700 3 3 -916.83902910
@@ -25,4 +30,10 @@ hBN 288 pbe hgh 700 3 6 -3667.36290014
 hBN 392 pbe hgh 700 3 7 -4991.69189244
 hBN 512 pbe hgh 700 3 8 -6519.75990299
 hBN 648 pbe hgh 700 3 9 -8251.56420753
+hBN 8 pbe hgh 1000 2 1 -102.59630549
+hBN 32 pbe hgh 1000 2 2 -410.42409980
+hBN 72 pbe hgh 1000 2 3 -923.45610795
+hBN 128 pbe hgh 1000 2 4 -1641.70010144
+hBN 200 pbe hgh 1000 2 5 -2565.15667796
 water_Oup_Hdown 3 pbe hgh 700 3 1 -33.53633008
+water_Oup_Hdown 3 pbe hgh 1000 2 1 -34.01959451
